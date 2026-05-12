@@ -20,39 +20,6 @@ Aqueduct aimed to simplify RHEL compliance by providing ready-to-run remediation
 
 Each STIG finding mapped to an individual Bash script (e.g., `GEN000480.sh` for RHEL 5, `RHEL-06-000011.sh` for RHEL 6), making it straightforward to audit, customize, or integrate into larger automation pipelines.
 
-## Repository Structure
-
-```
-├── compliance/
-│   ├── ansible/
-│   │   └── ssg/
-│   │       └── rhel-6/            # Ansible role for RHEL 6 SSG hardening
-│   │           └── roles/harden/  # tasks, templates, handlers, vars
-│   ├── bash/
-│   │   ├── stig/
-│   │   │   ├── rhel-5/            # ~493 scripts (GEN-series STIG IDs)
-│   │   │   │   ├── prod/          # Production-ready remediation scripts
-│   │   │   │   ├── dev/           # In-development scripts
-│   │   │   │   └── manual/        # Checks requiring human review
-│   │   │   └── rhel-6/            # ~57 scripts (RHEL-06-series STIG IDs)
-│   │   │       ├── prod/
-│   │   │       ├── dev/
-│   │   │       └── manual-check/
-│   │   └── ssg/                   # SCAP Security Guide integration tooling
-│   └── puppet/
-│       └── stig/
-│           └── rhel-6/            # Puppet modules for RHEL 6 STIG
-│               ├── manifests/
-│               └── modules/       # accounts, aide, audit, banner, cron,
-│                                  # fstab, iptables, kernel, named, networking,
-│                                  # nfs, ntp, packages, pam, postfix, puppet,
-│                                  # rsyslog, services, ssh, sudo, sysctl, yum
-├── etc/aqueduct/profiles/         # Configuration profiles (DISA RHEL 5/6)
-├── aqueduct.spec                  # RPM spec for packaging as system RPMs
-├── docs/license.txt               # GPL v2
-└── README                         # Original project README
-```
-
 The project shipped **1,366 files** in total across Bash, Puppet, and Ansible, with the bulk being individual per-finding remediation scripts.
 
 ## Impact and Prior Art
@@ -118,3 +85,36 @@ Copyright (C) 2011–2013 Vincent C. Passaro (vincent.passaro@gmail.com)
 - [OpenSCAP](https://www.open-scap.org/) — SCAP scanning and remediation toolkit
 - [ansible-lockdown](https://github.com/ansible-lockdown) — Ansible roles for STIG/CIS compliance (carries forward the approach Aqueduct pioneered)
 - [DISA STIG Library](https://public.cyber.mil/stigs/) — Current STIG publications from DISA
+
+## Repository Structure
+
+```
+├── compliance/
+│   ├── ansible/
+│   │   └── ssg/
+│   │       └── rhel-6/            # Ansible role for RHEL 6 SSG hardening
+│   │           └── roles/harden/  # tasks, templates, handlers, vars
+│   ├── bash/
+│   │   ├── stig/
+│   │   │   ├── rhel-5/            # ~493 scripts (GEN-series STIG IDs)
+│   │   │   │   ├── prod/          # Production-ready remediation scripts
+│   │   │   │   ├── dev/           # In-development scripts
+│   │   │   │   └── manual/        # Checks requiring human review
+│   │   │   └── rhel-6/            # ~57 scripts (RHEL-06-series STIG IDs)
+│   │   │       ├── prod/
+│   │   │       ├── dev/
+│   │   │       └── manual-check/
+│   │   └── ssg/                   # SCAP Security Guide integration tooling
+│   └── puppet/
+│       └── stig/
+│           └── rhel-6/            # Puppet modules for RHEL 6 STIG
+│               ├── manifests/
+│               └── modules/       # accounts, aide, audit, banner, cron,
+│                                  # fstab, iptables, kernel, named, networking,
+│                                  # nfs, ntp, packages, pam, postfix, puppet,
+│                                  # rsyslog, services, ssh, sudo, sysctl, yum
+├── etc/aqueduct/profiles/         # Configuration profiles (DISA RHEL 5/6)
+├── aqueduct.spec                  # RPM spec for packaging as system RPMs
+├── docs/license.txt               # GPL v2
+└── README                         # Original project README
+```
